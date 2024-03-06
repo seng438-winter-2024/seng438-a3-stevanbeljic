@@ -19,9 +19,8 @@
 	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/University Notes/Seng 438/seng438-a3-stevanbeljic/seng438-a3-artifacts/jfreechart-1.0.19/lib/servlet.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/University Notes/Seng 438/seng438-a3-stevanbeljic/seng438-a3-artifacts/jfreechart-1.0.19/lib/swtgraphics2d.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/University Notes/Seng 438/seng438-a3-stevanbeljic/seng438-a3-artifacts/jfreechart-1.0.19/lib/Jmock/jmock-2.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/University Notes/Seng 438/seng438-a3-stevanbeljic/seng438-a3-artifacts/jfreechart-1.0.19/lib/Jmock/jmock-junit3-2.5.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/University Notes/Seng 438/seng438-a3-stevanbeljic/seng438-a3-artifacts/jfreechart-1.0.19/lib/Jmock/jmock-junit4-2.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/University Notes/Seng 438/seng438-a3-stevanbeljic/seng438-a3-artifacts/jfreechart-1.0.19/lib/Jmock/jmock-legacy-2.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/University Notes/Seng 438/seng438-a3-stevanbeljic/seng438-a3-artifacts/jfreechart-1.0.19/lib/hamcrest-library-1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/Desktop/University Notes/Seng 438/seng438-a3-stevanbeljic/seng438-a3-artifacts/jfreechart-1.0.19/lib/Jmock/jmock-script-2.5.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
