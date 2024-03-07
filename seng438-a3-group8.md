@@ -15,7 +15,7 @@ for each group. Please see each lab document for details.)
 
 # 1 Introduction
 
-Text…
+The goal of this lab is to use JUnit, JMock, and EclEmma to calculate initial coverage using our tests cases developed in the second assignment, and improve them to increase various coverage criteria regarding the SUT, JFreeChart. We are to use the white-box testing techniques learned in class, regarding control flow and data flow, and use them to examine existing code and to develop test cases to further improve the coverage of our test code.
 
 # 2 Manual data-flow coverage calculations for calculateColumnTotal() and <insert second method name here>
 
