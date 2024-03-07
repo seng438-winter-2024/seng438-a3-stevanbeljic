@@ -298,8 +298,7 @@ public class DataUtilitiesTest extends DataUtilities {
 		context.checking(new Expectations(){{
 			
 			oneOf(values2d).getColumnCount();
-			will(returnValue((3))); //setting to 2 throws error
-					//seems like its returning provided value - 1
+			will(returnValue((2)));
 			
 			oneOf(values2d).getValue(1, 0);
 			will(returnValue((1)));
@@ -326,13 +325,15 @@ public class DataUtilitiesTest extends DataUtilities {
 		context.checking(new Expectations(){{
 			
 			oneOf(values2d).getColumnCount();
-			will(returnValue((3)));
+			will(returnValue((2)));
 			
 			oneOf(values2d).getValue(1, 0);
 			will(returnValue((-1)));
 			
 			oneOf(values2d).getValue(1, 1);
 			will(returnValue((-0.1)));
+			
+			
 		}});
 		
 		double i = DataUtilities.calculateRowTotal(values2d, 1); //not 0-based, setting to 0 causes error
@@ -351,10 +352,7 @@ public class DataUtilitiesTest extends DataUtilities {
 		final Values2D values2d = context.mock(Values2D.class);
 		context.checking(new Expectations(){{
 			oneOf(values2d).getColumnCount();
-			will(returnValue((2)));
-			
-			oneOf(values2d).getRowCount();
-			will(returnValue((2)));
+			will(returnValue((1)));
 			
 			oneOf(values2d).getValue(1, 0);
 			will(returnValue(0));
@@ -377,18 +375,20 @@ public class DataUtilitiesTest extends DataUtilities {
 		final Values2D values2d = context.mock(Values2D.class);
 		context.checking(new Expectations(){{
 			
-			oneOf(values2d).getColumnCount();
+			allowing(values2d).getColumnCount();
 			will(returnValue((4)));
-			oneOf(values2d).getValue(1, 0);
+			allowing(values2d).getValue(1, 0);
 			will(returnValue(39));
-			oneOf(values2d).getValue(1, 1);
+			allowing(values2d).getValue(1, 1);
 			will(returnValue(0.5));
-			oneOf(values2d).getValue(1, 2);
+			allowing(values2d).getValue(1, 2);
+			will(returnValue(0.5));
+			allowing(values2d).getValue(1, 3);
 			will(returnValue(0.5));
 		}});
 		
 		double i = DataUtilities.calculateRowTotal(values2d, 1);
-		double expectedResult = 40.0;
+		double expectedResult = 40.5;
 		assertEquals(expectedResult, i, 0.00001);
 		
 	}
@@ -421,17 +421,18 @@ public class DataUtilitiesTest extends DataUtilities {
 	 */
 	@Test
 	public void testCalculateRowTotalNotEmpty() {
+		
 		Mockery context = new Mockery();
 		final Values2D values2d = context.mock(Values2D.class);
 		context.checking(new Expectations(){{
 			oneOf(values2d).getColumnCount();
-			will(returnValue((2)));
+			will(returnValue((1)));
 			
-			oneOf(values2d).getValue(1, 0);
-			will(returnValue((1.0)));
+			oneOf(values2d).getValue(0, 0);
+			will(returnValue((1)));
 		}});
 		
-		double i = DataUtilities.calculateRowTotal(values2d, 1);
+		double i = DataUtilities.calculateRowTotal(values2d, 0);
 		double expectedResult = 1.0;
 		assertEquals(expectedResult, i, 0.00001);
 	}
@@ -473,9 +474,6 @@ public class DataUtilitiesTest extends DataUtilities {
 		context.checking(new Expectations(){{
 			
 			oneOf(values2d).getColumnCount();
-			will(returnValue((3))); 
-			
-			oneOf(values2d).getRowCount();
 			will(returnValue((2)));
 			
 			oneOf(values2d).getValue(2, 0);
