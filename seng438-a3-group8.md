@@ -17,9 +17,11 @@ for each group. Please see each lab document for details.)
 
 Text…
 
-# 2 Manual data-flow coverage calculations for X and Y methods
+# 2 Manual data-flow coverage calculations for calculateColumnTotal() and <insert second method name here>
 
-Text…
+**calculateColumnTotal()**<br><br>
+<img width="428" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/7a788c62-21ed-4486-88d1-ecd345a1c5da">
+<br><br>
 
 # 3 A detailed description of the testing strategy for the new unit test
 
