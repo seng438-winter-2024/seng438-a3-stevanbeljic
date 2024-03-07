@@ -92,7 +92,9 @@ Range.java - 25.2% statement, 19.5% branch, 43.5% method<br>
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
-Text…
+**DataUtilities.java**
+testClonePositiveArray() - 55.2% (8.3% increase) statement, 34.4% (4.7% increase) branch, 70% (10% increase) method
+testCalculateColumnTotalValidRows() - 66.7% (11.5% increase) statement, 42.2 (7.8% increase) branch, 80% (10% increase) method
 
 # 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
 
