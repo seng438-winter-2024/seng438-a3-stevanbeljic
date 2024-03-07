@@ -20,8 +20,19 @@ Text…
 # 2 Manual data-flow coverage calculations for calculateColumnTotal() and <insert second method name here>
 
 **calculateColumnTotal()**<br><br>
-<img width="428" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/7a788c62-21ed-4486-88d1-ecd345a1c5da">
+<img width="329" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/7a2334df-13a2-4dde-99fd-9d1aa0bf26e6">
+
 <br><br>
+|Def-path sets | |
+| :-----: | :----: |
+| du(1, data) | {[1]<br>[1, 2, 3]<br>[1, 2, 3, 4, 5]<br>[1, 2, 3, 4, 9, 10]} |
+| du(1, column) | {[1]<br>[1, 2, 3, 4, 5]<br>[1, 2, 3, 4, 9, 10]} |
+| du(2, total) | {[2, 3, 4, 5, 6, 7]<br>[2, 3, 9, 10, 12]} |
+| du(3, rowCount) | {[3, 4, 9]<br>[3, 4, 5, 6, 8, 4, 9]<br>[3, 4, 5, 6, 7, 8, 4, 9]<br>[2, 3, 4, 9, 10, 11, 13, 9]<br>[3, 4, 9, 10, 11, 12, 13, 9]} |
+| du(4, r) | {[4, 9]<br>} |
+| du(5, n) | {} |
+| du(9, r2) | {} |
+| du(10, n) | {} |
 
 # 3 A detailed description of the testing strategy for the new unit test
 
