@@ -755,6 +755,45 @@ public void testGetCumulativePercentagesNonEmptyData() {
 		assertTrue("Arrays not equal", DataUtilities.equal(arrayA, arrayB));
 	}
 	
+	@Test
+	public void testEqualNullArrays() {
+		double[][] arrayA = null;
+		double[][] arrayB = null;
+		
+		assertTrue("Arrays not equal", DataUtilities.equal(arrayA, arrayB));
+	}
+	
+	@Test
+	public void testEqualFirstNullArray() {
+		double[][] arrayA = {{1,2,3},{3,2,1}};
+		double[][] arrayB = null;
+		
+		assertFalse("Arrays equal but shouldn't be", DataUtilities.equal(arrayA, arrayB));
+	}
+	
+	@Test
+	public void testEqualSecondNullArray() {
+		double[][] arrayA = null;
+		double[][] arrayB = {{1,2,3},{3,2,1}};
+		
+		assertFalse("Arrays equal but shouldn't be", DataUtilities.equal(arrayA, arrayB));
+	}
+	
+	@Test
+	public void testEqualDifLengthArrays() {
+		double[][] arrayA = {{1,2,3},{3,2,1},{1,2,3}};
+		double[][] arrayB = {{1,2},{1,2}};
+		
+		assertFalse("Arrays equal but shouldn't be", DataUtilities.equal(arrayA, arrayB));
+	}
+
+	@Test
+	public void testEqualDifferentArrays() {
+		double[][] arrayA = {{1,2,3},{3,2,1},{1,2,3}};
+		double[][] arrayB = {{1,2,3},{8,7,6},{1,2,3}};
+		
+		assertFalse("Arrays equal but shouldn't be", DataUtilities.equal(arrayA, arrayB));
+	}
 	//3 parameter version of calculateColumnTotal()
 	@Test
 	public void testCalculateColumnTotalValidRows() {
@@ -777,6 +816,32 @@ public void testGetCumulativePercentagesNonEmptyData() {
 		int[] validRows = {1,2};
 		double i = DataUtilities.calculateColumnTotal(values2d, 0, validRows);
 		double expectedResult = 21.0;
+		
+		assertEquals(expectedResult, i, 0.00001);
+		
+	}
+	
+	@Test
+	public void testCalculateColumnNegRowCount() {
+		Mockery context = new Mockery();
+		final Values2D values2d = context.mock(Values2D.class);
+		context.checking(new Expectations(){{
+			oneOf(values2d).getRowCount();
+			will(returnValue((-1)));
+			
+			oneOf(values2d).getRowCount();
+			will(returnValue((3)));
+			
+			oneOf(values2d).getValue(0, 0);
+			will(returnValue(12));
+			oneOf(values2d).getValue(1, 0);
+			will(returnValue(11));
+			oneOf(values2d).getValue(2, 0);
+			will(returnValue(10));
+		}});
+		int[] validRows = {1,2};
+		double i = DataUtilities.calculateColumnTotal(values2d, 0, validRows);
+		double expectedResult = 0.0;
 		
 		assertEquals(expectedResult, i, 0.00001);
 		
@@ -806,4 +871,28 @@ public void testGetCumulativePercentagesNonEmptyData() {
 			assertEquals(expectedResult, i, 0.00001);
 			
 		}
+		
+		@Test
+		public void testCalculateRowTotalNegColumnCount() {
+			Mockery context = new Mockery();
+			final Values2D values2d = context.mock(Values2D.class);
+			context.checking(new Expectations(){{
+				
+				oneOf(values2d).getColumnCount();
+				will(returnValue((-1)));
+				
+				oneOf(values2d).getValue(0, 0);
+				will(returnValue(12));
+				oneOf(values2d).getValue(0, 1);
+				will(returnValue(0.5));
+				oneOf(values2d).getValue(0, 2);
+				will(returnValue(1));
+			}});
+			int[] validCols = {1, 2, 3};
+			double i = DataUtilities.calculateRowTotal(values2d, 0, validCols);
+			double expectedResult = 0;
+			
+			assertEquals(expectedResult, i, 0.00001);
+		}
+			
 }
