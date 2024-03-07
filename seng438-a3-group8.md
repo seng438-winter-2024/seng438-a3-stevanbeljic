@@ -86,9 +86,9 @@ Our strategy for developing new tests is to first gleen what information relatin
 
 The coverage criteria we chose to focus on within the scope of this assignment are: statement, branch and method. We chose these since the coverage criteria are readily available in EclEmma and do not need to be calculated manually.
 
-The initial coverages are:
-DataUtilities.java - 46.9% statement, 29.7% branch, 60% method
-Range.java - 25.2% statement, 19.5% branch, 43.5% method
+The initial coverages are:<br><br>
+DataUtilities.java - 46.9% statement, 29.7% branch, 60% method<br>
+Range.java - 25.2% statement, 19.5% branch, 43.5% method<br>
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
