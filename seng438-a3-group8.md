@@ -82,7 +82,13 @@ Text…
 |testCalculateColumnTotalValidIndex| dcu:{} dpu:{}|
 # 3 A detailed description of the testing strategy for the new unit test
 
-Text…
+Our strategy for developing new tests is to first gleen what information relating to coverage we can from the initial test cases imported from assignment 2. From these test cases, we look to see where we can add onto existing unit tests, or create new unit tests, to improve our coverage criteria. We will be performing white-box testing on the SUT, since we have access to the source code and we will develop test cases based upon the expected results of the code, and since our primary metric for measuring test effectiveness will be coverage of various criteria.
+
+The coverage criteria we chose to focus on within the scope of this assignment are: statement, branch and method. We chose these since the coverage criteria are readily available in EclEmma and do not need to be calculated manually.
+
+The initial coverages are:
+DataUtilities.java - 46.9% statement, 29.7% branch, 60% method
+Range.java - 25.2% statement, 19.5% branch, 43.5% method
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
