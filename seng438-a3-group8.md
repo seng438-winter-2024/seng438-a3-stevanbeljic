@@ -57,6 +57,29 @@ Text…
 | du(10, 11, n) | {[10, 11]} |
 | du(10, 12, n) | {[10, 11, 12]} |
 
+| Variable | Defined at node |   dcu  |    dpu   |
+| :------: | :-------------: |:------:|:--------:|
+|  data    |        1        |{3,5,10}|{[1, end]}|
+|  column  |        1        |{5,10}  |          |
+|  total   |        2        |{7,12}  |          |
+|  rowCount|        3        |        |{[4, 5], [4, 9], [9, 10], [9, end]}|
+|  r       |        4        |{4,8}   |{[4, 5], [4, 9]}|
+|  n       |        5        |{7}     |{[6, 7], [6, 8]}|
+|  r2      |        9        |{10, 13}|{[9, 10], [9, end]}|
+|  n       |        10       |{12}    |{[9, 10], [9, end]}|
+
+**Pair covered per test case**
+|Test Case| Pairs covered |
+|:-------:|:-------------:|
+|testCalculateColumnTotalDataNull| dcu:{} dpu:{}|
+|testCalculateColumnTotalDataNotNull| dcu:{} dpu:{}|
+|testCalculateColumnTotalSumNegative| dcu:{} dpu:{}|
+|testCalculateColumnTotalSumZero| dcu:{} dpu:{}|
+|testCalculateColumnTotalSumPositive| dcu:{} dpu:{}|
+|testCalculateColumnTotalEmpty| dcu:{} dpu:{}|
+|testCalculateColumnTotalNotEmpty| dcu:{} dpu:{}|
+|testCalculateColumnTotalInvalidIndex| dcu:{} dpu:{}|
+|testCalculateColumnTotalValidIndex| dcu:{} dpu:{}|
 # 3 A detailed description of the testing strategy for the new unit test
 
 Text…
