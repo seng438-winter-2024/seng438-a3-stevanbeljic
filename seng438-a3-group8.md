@@ -87,19 +87,62 @@ Our strategy for developing new tests is to first gleen what information relatin
 The coverage criteria we chose to focus on within the scope of this assignment are: statement, branch and method. We chose these since the coverage criteria are readily available in EclEmma and do not need to be calculated manually.
 
 The initial coverages are:<br><br>
-DataUtilities.java - 46.9% statement, 29.7% branch, 60% method<br>
-Range.java - 25.2% statement, 19.5% branch, 43.5% method<br>
+DataUtilities - 46.9% statement, 29.7% branch, 60% method<br>
+Range - 25.2% statement, 19.5% branch, 43.5% method<br>
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
 **DataUtilities.java**
-testClonePositiveArray() - 55.2% (8.3% increase) statement, 34.4% (4.7% increase) branch, 70% (10% increase) method
-testCalculateColumnTotalValidRows() - 66.7% (11.5% increase) statement, 42.2 (7.8% increase) branch, 80% (10% increase) method
+<br>
+<br>
+`testClonePositiveArray()`<br>
+Adding the testClonePositiveArray unit test increased line coverage by 8.3%, branch coverage by 4.7%, and method coverage by 10%. This is because in our initial test cases from assignment 2, we did not have any test cases that tested the clone() method in DataUtilities. We made this test first since it was evident that testing a method not previously tested should contribute the greatest jump in coverage metrics. 
+<br>
+<br>
+`testCalculateColumnTotalValidRows()`<br>
+Similarily, the previous version of JFreeChart did not have a calculateColumnTotal() which took 3 parameters, unlike this version. Since we did not have a unit test that tested this 3-parameter version calculateColumnTotal(), we accurately predicted that adding tests for this would generate the biggest jump in coverage. As our data shows, it did as statement coverage jumped by 11.5%, branch by 7.8%, and method by 10%.
+<br><br>
+**Range.java**
+<br>
+<br>
+`testCase1`<br>
+Description
+<br>
+<br>
+`testCase2`<br>
+Description
+<br>
+<br>
+`testCase3`<br>
+Description
+# 5 A detailed report of the coverage achieved of each class and method
 
-# 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
+### DataUtilities
+Final Coverage:
+- Statement: 89.6% (as compared to initial 46.9%) (Note: It was not possible to achieve >90% coverage since there were several instances of unreachable code or code running in infinite loops that was not testable. Further down in this section are screenshots demonstrating the issues with the SUT.)<br>
+  <img width="685" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/a7b992d8-a30a-48f1-9d71-ca57a0f31b18">
 
-Text…
+- Branch: 73.4% (as compared to initial 29.7%)<br>
+  <img width="690" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/44707755-e25f-4022-97a7-fb50ec462989">
 
+- Method: 100% (as compared to initial 60%)<br>
+  <img width="694" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/055f8c56-5380-466d-95ba-e8e573fd1c10">
+
+- Unreachable & Untestable code:<br>
+  1.<br> <img width="293" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/911a373c-59e5-4322-9323-0ccb5a8a0373"><br>
+  2.<br> <img width="135" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/83d920f2-06c2-4b10-8bae-6fbb69dda06c"><br>
+  3.<br> <img width="297" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/aefb0b1e-8a73-4a72-a2a5-da7cdcf51db7"><br>
+  4.<br> <img width="357" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/18007526-6082-496b-b09e-98073a250a25"><br>
+
+  In instances 1, 3, and 4v, the code ran an infinite loop since the conditions checked if the r2, c2, and i2 we larger than some count, and then kept incrementing them. In instance 2, the code was unreachable since total was initialized as 0, then immediately checked to see if it was larger than 0. Therefore, 89.6% is the highest possible statement coverage without modifying the SUT itself.
+
+
+### Range
+Final Coverage:
+- Statement: x% (as compared to initial 25.2%)
+- Branch: x% (as compared to initial 19.5%)
+- Method: x% (as compared to initial 43.5%)
+- 
 # 6 Pros and Cons of coverage tools used and Metrics you report
 
 Text…
@@ -110,12 +153,21 @@ Text…
 
 # 8 A discussion on how the team work/effort was divided and managed
 
-Text…
+Familiarization with the SUT was not fully necessary as it is the same system used as the previous assignment, however there were some changes and each group member was tasked with individually identifying changes across JFreeChart versions. Group work was divided similarily to the last assignment, wherein Stevan and Rutvi were tasked with handling the DataUtilities class and all of its corresponding requirements (DFGs, DU sets, coverage, test development and reporting), while Angelo and Aaron were tasked with handling the Range class and its corresponding requirements. Upon achievement of the desired coverage metrics, we came together as a group and reviewed the generated DFGs and unit tests. The overall report was written collaboratively.
 
 # 9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab
 
-Text…
+One issue we had was taking into account all the dead code in the DataUtilities class. The class has 3 instances of infinite loops and 1 instance of unreachable code, and we had difficulty determining how to proceed and handle this issue, as our statement coverage was up to 89.6% and to get 90% we needed to somehow test this untestable code. 
+We also had some difficulty still learning and getting familiar with JMock. Even though we had some experience on the previous assignment, more was necessary to get used to the tool. While we are still not fully confident in our abilities to maximize its utility, we feel much more confident in using it to develop test doubles to execute unit tests.
+
+Lessons learned from this lab include just learning how to better analyze data flow graphs and create the corresponding DU-pair and path sets, and also how to develop tests to tackle these tests. They were a significant challenge at first, however using the course notes we managed to figure out how to create these sets and also how to create the graphs themselves.
 
 # 10 Comments/feedback on the lab itself
 
-Text…
+**Stevan**: I thought this lab was very good at teaching us how to apply whitebox testing in combination with previous black-box testing methods, to bolster coverage. It was also very useful in teaching us how to use coverage tools such as EclEmma (although we do have some prior experience using it). Doing the DFGs was a little tiring and there was a lot of work in developing those, specifically all the associated sets, however it was a good practical way to learn how to produce a CFG with data flow from real code.
+
+**Rutvi**:
+
+**Angelo**:
+
+**Aaron**:
