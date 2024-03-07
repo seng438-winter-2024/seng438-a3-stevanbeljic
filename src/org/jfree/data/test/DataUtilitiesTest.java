@@ -689,41 +689,121 @@ public void testGetCumulativePercentagesNonEmptyData() {
  * 1     0.8 ((-3 + 7) / 5)
  * 2     1.0 ((-3 + 7 + 1) / 5)
  */
-@Test
-public void testGetCumulativePercentagesNegativeValues() {
-    Mockery context = new Mockery();
-    final KeyedValues data = context.mock(KeyedValues.class);
-    
-    context.checking(new Expectations() {{
-        allowing(data).getItemCount();
-        will(returnValue(3));
-
-        allowing(data).getKey(0);
-        will(returnValue(0));
-
-        allowing(data).getKey(1);
-        will(returnValue(1));
-
-        allowing(data).getKey(2);
-        will(returnValue(2));
-
-        allowing(data).getValue(0);
-        will(returnValue(-3));
-
-        allowing(data).getValue(1);
-        will(returnValue(7));
-
-        allowing(data).getValue(2);
-        will(returnValue(1));
-    }});
-
-    KeyedValues result = DataUtilities.getCumulativePercentages(data);
-
-    assertEquals(0.6, result.getValue(0));
-    assertEquals(0.8, result.getValue(1));
-    assertEquals(1.0, result.getValue(2));
-
-    context.assertIsSatisfied();
-}
+	@Test
+	public void testGetCumulativePercentagesNegativeValues() {
+	    Mockery context = new Mockery();
+	    final KeyedValues data = context.mock(KeyedValues.class);
+	    
+	    context.checking(new Expectations() {{
+	        allowing(data).getItemCount();
+	        will(returnValue(3));
 	
+	        allowing(data).getKey(0);
+	        will(returnValue(0));
+	
+	        allowing(data).getKey(1);
+	        will(returnValue(1));
+	
+	        allowing(data).getKey(2);
+	        will(returnValue(2));
+	
+	        allowing(data).getValue(0);
+	        will(returnValue(-3));
+	
+	        allowing(data).getValue(1);
+	        will(returnValue(7));
+	
+	        allowing(data).getValue(2);
+	        will(returnValue(1));
+	    }});
+	
+	    KeyedValues result = DataUtilities.getCumulativePercentages(data);
+	
+	    assertEquals(0.6, result.getValue(0));
+	    assertEquals(0.8, result.getValue(1));
+	    assertEquals(1.0, result.getValue(2));
+	
+	    context.assertIsSatisfied();
+	}
+	
+	/********************************************************************
+	 * ******************************************************************
+	 * **********************Tests added for A3**************************
+	 * ******************************************************************
+	 * ******************************************************************
+	 */
+	
+	@Test
+	public void testClonePositiveArray() {
+		double[][] initArray = {{1,2,3},{3,2,1}};
+		double[][] clone = DataUtilities.clone(initArray);
+		assertArrayEquals(initArray, clone);
+	}
+	
+	@Test
+	public void testCloneNegativeArray() {
+		double[][] initArray = {{-1,-2,-3},{-3,-2,-1}};
+		double[][] clone = DataUtilities.clone(initArray);
+		assertArrayEquals(initArray, clone);
+	}
+	
+	@Test
+	public void testEqualArrays() {
+		double[][] arrayA = {{1,2,3},{1,2,3}};
+		double[][] arrayB = {{1,2,3},{1,2,3}};
+		
+		assertTrue("Arrays not equal", DataUtilities.equal(arrayA, arrayB));
+	}
+	
+	//3 parameter version of calculateColumnTotal()
+	@Test
+	public void testCalculateColumnTotalValidRows() {
+		Mockery context = new Mockery();
+		final Values2D values2d = context.mock(Values2D.class);
+		context.checking(new Expectations(){{
+			oneOf(values2d).getColumnCount();
+			will(returnValue((2)));
+			
+			oneOf(values2d).getRowCount();
+			will(returnValue((3)));
+			
+			oneOf(values2d).getValue(0, 0);
+			will(returnValue(12));
+			oneOf(values2d).getValue(1, 0);
+			will(returnValue(11));
+			oneOf(values2d).getValue(2, 0);
+			will(returnValue(10));
+		}});
+		int[] validRows = {1,2};
+		double i = DataUtilities.calculateColumnTotal(values2d, 0, validRows);
+		double expectedResult = 21.0;
+		
+		assertEquals(expectedResult, i, 0.00001);
+		
+	}
+	
+	//3 parameter version of calculateColumnTotal()
+		@Test
+		public void testCalculateRowTotalValidColumns() {
+			Mockery context = new Mockery();
+			final Values2D values2d = context.mock(Values2D.class);
+			context.checking(new Expectations(){{
+				
+				oneOf(values2d).getColumnCount();
+				will(returnValue((3)));
+				
+				oneOf(values2d).getValue(0, 0);
+				will(returnValue(12));
+				oneOf(values2d).getValue(0, 1);
+				will(returnValue(0.5));
+				oneOf(values2d).getValue(0, 2);
+				will(returnValue(1));
+			}});
+			int[] validCols = {1, 2, 3};
+			double i = DataUtilities.calculateRowTotal(values2d, 0, validCols);
+			double expectedResult = 1.5;
+			
+			assertEquals(expectedResult, i, 0.00001);
+			
+		}
 }
