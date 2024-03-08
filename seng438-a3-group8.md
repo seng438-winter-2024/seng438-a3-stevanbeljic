@@ -143,10 +143,15 @@ Final Coverage:
 ### Range
 Final Coverage:
 - Statement: 90.8% (as compared to initial 25.2%)
-
+![alt text](media/rangeStatementCoverage.png)
 - Branch: 86.6% (as compared to initial 19.5%)
-
+![alt text](media/rangeBranchCoverage.png)
 - Method: 100.0% (as compared to initial 43.5%)
+![alt text](media/rangeMethodCoverage.png)
+- Unreachable & Untestable code:
+![alt text](media/boundChecks.png)
+
+This chunk of code was found in many methods to catch errors associated with the bounds having invalid values; the upper bound being less than the lower bound or the lower bound being greater than the upper bound. However, this issue is always caught in the constructor and the class has not setters to change the bound values in a way that would cause the exception to be thrown. Because of this, this unreachable code reduces the amount of statement and branch coverage that we could achieve but thankfully, we were able to reach the minimum requirements outlined by testing other methods extensively.
 
 # 6 Pros and Cons of coverage tools used and Metrics you report
 
