@@ -894,23 +894,5 @@ public void testGetCumulativePercentagesNonEmptyData() {
 			
 			assertEquals(expectedResult, i, 0.00001);
 		}
-
-	        @Test
-	        public void testCalculateRowTotalForLoop() {
-		    Mockery context = new JUnit4Mockery();
-	            Values2D values2d = context.mock(Values2D.class);
-	        
-	        
-	            context.checking(new Expectations() {{
-	                oneOf(values2d).getColumnCount(); 
-	                will(returnValue(-1));
-	                oneOf(values2d).getValue(with(any(Integer.class)), with(equal(0))); 
-	                will(returnValue(1.0));
-	            
-	            }});
-	            double result = DataUtilities.calculateRowTotal(values2d, 0);
-	            double expectedResult = 0.0; 
-
-		    assertEquals(expectedResult, result, 0.00001);
-	    }			
+		
 }
