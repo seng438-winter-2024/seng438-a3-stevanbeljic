@@ -142,10 +142,12 @@ Final Coverage:
 
 ### Range
 Final Coverage:
-- Statement: x% (as compared to initial 25.2%)
-- Branch: x% (as compared to initial 19.5%)
-- Method: x% (as compared to initial 43.5%)
-- 
+- Statement: 90.8% (as compared to initial 25.2%)
+
+- Branch: 86.6% (as compared to initial 19.5%)
+
+- Method: 100.0% (as compared to initial 43.5%)
+
 # 6 Pros and Cons of coverage tools used and Metrics you report
 
 The coverage tool we used, apart from our own knowledge on the DU sets, was EclEmma. Some positive aspects of EclEmma were that it was easy to use and understand with its simplistic GUI and reporting metrics. The reporting metrics covered by EclEmma were largely similar to the ones covered in class. Furthermore, EclEmma simplistically highlights covered branches, partly covered branches, and uncovered branches, making it easy to locate where more tests were needed.
