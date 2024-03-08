@@ -160,12 +160,15 @@ Benefits of Requirements-based testing:
 - Easier to develop tests as knowledge of underlying functionality of system is not needed
 - Tests expected behaviour of subsystems
 - Clearer test objectives
+
 Drawbacks of Requirements-based testing:
 - Limited knowledge of the underlying functionality of the system impacts its accuracy
 - Confined to the listed requirements
+
 Benefits of Coverage-based testing:
 - Measureable criteria to show where enough work was done, and where more is needed
 - Tests are tailored to the SUT
+
 Drawbacks of Coverage-based testing:
 - Significant time required to familiarize with SUT
 - High coverage does not correlate to high functionality
