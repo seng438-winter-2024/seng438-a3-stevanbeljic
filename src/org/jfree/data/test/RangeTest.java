@@ -277,6 +277,270 @@ public class RangeTest {
     	assertFalse("Ranges from -1 to 1 and 2 to 3 shouldn't intersect", exampleRange1.intersects(2.0, 3.0));
     }
     
+    /*
+     * New Tests Added
+     */
+    
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorLowerGreaterThanUpperTest() {
+    	Range example = new Range(2, 1);
+    }
+    
+    @Test
+    public void containsValueLessThanLowerTest() {
+    	assertFalse(exampleRange1.contains(-2));
+    }
+    
+    @Test
+    public void containsValueGreaterThanUpperTest() {
+    	assertFalse(exampleRange1.contains(2));
+    }
+    
+    @Test
+    public void containsValueBetweenBoundsTest() {
+    	assertFalse(exampleRange1.contains(0));
+    }
+    
+    
+    @Test
+    public void expandTest() {
+        assertEquals(Range.expand(exampleRange1, 0.1, 0.1), new Range(-1.1, 1.1));
+    }
+    
+    @Test
+    public void shiftAllowZerocrossingTest() {
+        assertEquals(Range.shift(exampleRange1, 1, true), new Range(0, 2));
+    }
+    
+    @Test
+    public void shiftWithNoZeroCrossingTest() {
+        assertEquals(Range.shift(new Range(0,1), 1, false), new Range(1,2));
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void scaleWithNegativeFactorTest() {
+        Range test = Range.scale(exampleRange1, -2);
+    }
+    
+    @Test
+    public void scaleWithPositiveFactorTest() {
+        assertEquals(Range.scale(exampleRange1, 2), new Range(-2, 2));
+    }
+    
+    @Test
+    public void equalsNotWithRangeTest() {
+        assertFalse(exampleRange1.equals(new Object()));
+    }
+    
+    @Test
+    public void BothNaNRangeTest() {
+        assertTrue(new Range(2.0 % 0, 2.0 % 0).isNaNRange());
+    }
+    
+    @Test
+    public void constrainWithContainTest() {
+        assertTrue(exampleRange1.constrain(0) == 0.0);
+    }
+    
+    @Test
+    public void constrainCloseToUpper() {
+        assertTrue(exampleRange1.constrain(2) == 1.0);
+    }
+    
+    @Test
+    public void constrainCloseToLower() {
+        assertTrue(exampleRange1.constrain(-2) == -1.0);
+    }
+    
+    @Test
+    public void combineIgnoringNaNRange1NullTest() {
+        assertNull(Range.combineIgnoringNaN(null, new Range(2.0 % 0, 2.0 % 0)));
+    }
+    
+    @Test
+    public void combineIgnoringNaNRange2NullTest() {
+        assertNull(Range.combineIgnoringNaN(new Range(2.0 % 0, 2.0 % 0), null));
+    }
+    
+    @Test
+    public void combineIgnoringNaNBothNanNullTest() {
+        assertNull(Range.combineIgnoringNaN(new Range(2.0 % 0, 2.0 % 0), new Range(2.0 % 0, 2.0 % 0)));
+    }
+    
+    @Test
+    public void maxD2NaNTest() {
+        assertTrue(Range.combineIgnoringNaN(exampleRange1, new Range(0, 2.0 % 0)) == exampleRange1);
+    }
+    
+    @Test
+    public void minD2NaNTest() {
+        assertTrue(Range.combineIgnoringNaN(exampleRange1, new Range(2.0 % 0, 0)) == exampleRange1);
+    }
+    
+    
+    
+ // Test cases for contains(double value) ___________-------- aaron stuff
+    @Test
+    public void containsValueBelowLowerBound() {
+        assertFalse("Value below lower bound should return false", exampleRange1.contains(-2.0));
+    }
+
+    @Test
+    public void containsValueAboveUpperBound() {
+        assertFalse("Value above upper bound should return false", exampleRange1.contains(2.0));
+    }
+
+    @Test
+    public void containsValueWithinRange() {
+        assertTrue("Value within range should return true", exampleRange1.contains(0.5));
+    }
+
+    @Test
+    public void containsValueEqualToLowerBound() {
+        assertTrue("Value equal to lower bound should return true", exampleRange1.contains(-1.0));
+    }
+
+    @Test
+    public void containsValueEqualToUpperBound() {
+        assertTrue("Value equal to upper bound should return true", exampleRange1.contains(1.0));
+    }
+    
+    
+    // Test for combine()
+    @Test
+    public void combineWithNullRanges() {
+        assertNull("Combining two null ranges should return null",
+                   Range.combine(null, null));
+    }
+
+    @Test
+    public void combineWithOneNullRange() {
+        assertEquals("Combining one null range with another should return the non-null range",
+                     exampleRange1, Range.combine(exampleRange1, null));
+        assertEquals("Combining one null range with another should return the non-null range",
+                     exampleRange1, Range.combine(null, exampleRange1));
+    }
+
+    @Test
+    public void combineWithBothNonNullRanges() {
+        Range combinedRange = Range.combine(exampleRange1, exampleRange2);
+        assertEquals("Combining two non-null ranges should return the combined range",
+                     new Range(-1, 5), combinedRange);
+    }
+
+    // Test for combineIgnoringNaN()
+    @Test
+    public void combineIgnoringNaNWithNullRanges() {
+        assertNull("Combining two null ranges should return null",
+                   Range.combineIgnoringNaN(null, null));
+    }
+
+    @Test
+    public void combineIgnoringNaNWithOneNullRange() {
+        assertEquals("Combining one null range with another should return the non-null range",
+                     exampleRange1, Range.combineIgnoringNaN(exampleRange1, null));
+        assertEquals("Combining one null range with another should return the non-null range",
+                     exampleRange1, Range.combineIgnoringNaN(null, exampleRange1));
+    }
+
+    @Test
+    public void combineIgnoringNaNWithBothNonNullRanges() {
+        Range combinedRange = Range.combineIgnoringNaN(exampleRange1, exampleRange2);
+        assertEquals("Combining two non-null ranges should return the combined range",
+                     new Range(-1, 5), combinedRange);
+    }
+
+    @Test
+    public void combineIgnoringNaNWithNaNRanges() {
+        Range nanRange1 = new Range(Double.NaN, Double.NaN);
+        Range nanRange2 = new Range(2, 4);
+        assertNull("Combining two NaN ranges should return null",
+                   Range.combineIgnoringNaN(nanRange1, nanRange2));
+    }
+
+    // Test for expandToInclude()
+    @Test
+    public void expandToIncludeWithNullRange() {
+        assertEquals("Expanding a null range with a value should return a new range with that value",
+                     new Range(5, 5), Range.expandToInclude(null, 5));
+    }
+
+    @Test
+    public void expandToIncludeWithValueBelowLowerBound() {
+        assertEquals("Expanding a range with a value below the lower bound should return a new range with the updated lower bound",
+                     new Range(-2, 1), Range.expandToInclude(exampleRange1, -2));
+    }
+
+    @Test
+    public void expandToIncludeWithValueAboveUpperBound() {
+        assertEquals("Expanding a range with a value above the upper bound should return a new range with the updated upper bound",
+                     new Range(-1, 2), Range.expandToInclude(exampleRange1, 2));
+    }
+
+    @Test
+    public void expandToIncludeWithValueWithinBounds() {
+        assertEquals("Expanding a range with a value within bounds should return the original range",
+                     exampleRange1, Range.expandToInclude(exampleRange1, 0.5));
+    }
+    
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void getLowerboundWithIllegalRange() {
+    	Range newRange = new Range(4, 1);
+    	assertEquals("Expanding a range with a value within bounds should return the original range",
+                4, newRange.getLowerBound());
+    }
+    
+    
+    @Test
+    public void intersectsWithIntersectingRange() {
+        // Create a new Range object with bounds that intersect exampleRange1
+        Range intersectingRange = new Range(0, 2);
+        
+        // Check if intersectingRange intersects with exampleRange1
+        assertTrue("Ranges should intersect", exampleRange1.intersects(intersectingRange));
+    }
+
+    @Test
+    public void intersectsWithNonIntersectingRange() {
+        // Create a new Range object with bounds that don't intersect exampleRange1
+        Range nonIntersectingRange = new Range(2, 3);
+        
+        // Check if nonIntersectingRange intersects with exampleRange1
+        assertFalse("Ranges should not intersect", exampleRange1.intersects(nonIntersectingRange));
+    }
+    
+    
+    @Test
+    public void hashCodeWithEqualRanges() {
+        // Create another Range object with the same bounds as exampleRange1
+        Range equalRange = new Range(-1, 1);
+        
+        // Check if the hash codes are equal
+        assertEquals("Hash codes should be equal", exampleRange1.hashCode(), equalRange.hashCode());
+    }
+
+    @Test
+    public void hashCodeWithDifferentRanges() {
+        // Create another Range object with different bounds from exampleRange1
+        Range differentRange = new Range(-2, 2);
+        
+        // Check if the hash codes are different
+        assertNotEquals("Hash codes should not be equal", exampleRange1.hashCode(), differentRange.hashCode());
+    }
+    
+    
+    // Test case for intersects(double b0, double b1)
+    @Test
+    public void intersectsWhenB1GreaterThanLower() {
+    	Range testingRange = new Range(5,20);
+        assertTrue("When b1 is greater than lower, the method should return true",
+        		testingRange.intersects(-50, -10));
+    }
+    
+    
+    
     
     @After
     public void tearDown() throws Exception {
