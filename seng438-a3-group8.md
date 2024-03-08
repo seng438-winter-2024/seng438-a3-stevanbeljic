@@ -137,7 +137,7 @@ Final Coverage:
   3.<br> <img width="297" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/aefb0b1e-8a73-4a72-a2a5-da7cdcf51db7"><br>
   4.<br> <img width="357" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/18007526-6082-496b-b09e-98073a250a25"><br>
 
-  In instances 1, 3, and 4v, the code ran an infinite loop since the conditions checked if the r2, c2, and i2 we larger than some count, and then kept incrementing them. In instance 2, the code was unreachable since total was initialized as 0, then immediately checked to see if it was larger than 0. Therefore, 89.6% is the highest possible statement coverage without modifying the SUT itself.
+  In instances 1, 3, and 4, the code ran an infinite loop since the conditions checked if the r2, c2, and i2 we larger than some count, and then kept incrementing them. In instance 2, the code was unreachable since total was initialized as 0, then immediately checked to see if it was larger than 0. Therefore, 89.6% is the highest possible statement coverage without modifying the SUT itself.
 
 
 ### Range
@@ -148,11 +148,27 @@ Final Coverage:
 - 
 # 6 Pros and Cons of coverage tools used and Metrics you report
 
-Text…
+The coverage tool we used, apart from our own knowledge on the DU sets, was EclEmma. Some positive aspects of EclEmma were that it was easy to use and understand with its simplistic GUI and reporting metrics. The reporting metrics covered by EclEmma were largely similar to the ones covered in class. Furthermore, EclEmma simplistically highlights covered branches, partly covered branches, and uncovered branches, making it easy to locate where more tests were needed.
+<br><br>
+Some downsides of EclEmma were that it doesn't take into consideration unreachable code, meaning even if all executable code was covered, statement coverage could never be 100% since it still factors in unreachable statements into its total statement count. Another downside of EclEmma was that it does not have the ability to report on condition coverage, a significant coverage criteria covered in class. As suggested, we instead pivoted to tracking method coverage, although condition coverage would have been much more useful as method coverage is a fairly simple metric that does not provide as much insight into testing depth as condition coverage does.
 
 # 7 A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation.
 
-Text…
+Requirements based test generation (black-box testing) and coverage-based test generation (white-box testing) vary significantly. While black-box focuses on producing tests based on user requirements and expected behaviour, white-box tests are more inspired by the underlying code and system itself.
+
+Benefits of Requirements-based testing:
+- Easier to develop tests as knowledge of underlying functionality of system is not needed
+- Tests expected behaviour of subsystems
+- Clearer test objectives
+Drawbacks of Requirements-based testing:
+- Limited knowledge of the underlying functionality of the system impacts its accuracy
+- Confined to the listed requirements
+Benefits of Coverage-based testing:
+- Measureable criteria to show where enough work was done, and where more is needed
+- Tests are tailored to the SUT
+Drawbacks of Coverage-based testing:
+- Significant time required to familiarize with SUT
+- High coverage does not correlate to high functionality
 
 # 8 A discussion on how the team work/effort was divided and managed
 
