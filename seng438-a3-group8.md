@@ -188,7 +188,7 @@ Lessons learned from this lab include just learning how to better analyze data f
 
 **Stevan**: I thought this lab was very good at teaching us how to apply whitebox testing in combination with previous black-box testing methods, to bolster coverage. It was also very useful in teaching us how to use coverage tools such as EclEmma (although we do have some prior experience using it). Doing the DFGs was a little tiring and there was a lot of work in developing those, specifically all the associated sets, however it was a good practical way to learn how to produce a CFG with data flow from real code.
 
-**Rutvi**:
+**Rutvi**: Overall, I think this lab was an inclusion of various code coverage tools and recommendations gives students flexibility and exposure to different tools used in industry. While the lab mentions reporting three coverage metrics (statement, branch, and condition coverages), it could benefit from more explicit explanations and examples for each metric. This would assist students in understanding and implementing these metrics effectively. The section on manually calculating DU-pair coverage could be enhanced by providing a sample calculation or an example. This would assist students in completing this part of the assignment accurately.
 
 **Angelo**:
 
