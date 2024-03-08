@@ -108,16 +108,16 @@ Similarily, the previous version of JFreeChart did not have a calculateColumnTot
 **Range.java**
 <br>
 <br>
-`testCase1`<br>
-Description
+`constructorLowerGreaterThanUpperTest()`<br>
+This test was made to ensure the constructor threw an error, which increased statement coverage by 2.3%, branch coverage by 1.2%, and method coverage did not increase as expected because the constructor was already tested in prior test cases.
 <br>
 <br>
-`testCase2`<br>
-Description
+`expandTest()`<br>
+In contrast, expandTest uses a method that was not tested in assignment 2. Statement coverage increased by 8.7% as the `expand()` method has many lines, branch coverage increased by 2.5%, and method coverage increased by 8.7%.
 <br>
 <br>
-`testCase3`<br>
-Description
+`BothNaNRangeTest()`<br>
+In a similar way, this test case runs the `isNaNRange()` method which was not tested in the previous assignment. Additionally, this method contains branches that are able to be covered with additional test cases. Statement coverage was increased by 2.4%, branch coverage increased by 2.5%, and method coverage increased by 4.3%. 
 # 5 A detailed report of the coverage achieved of each class and method
 
 ### DataUtilities
