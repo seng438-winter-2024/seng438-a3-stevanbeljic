@@ -17,7 +17,7 @@ for each group. Please see each lab document for details.)
 
 The goal of this lab is to use JUnit, JMock, and EclEmma to calculate initial coverage using our tests cases developed in the second assignment, and improve them to increase various coverage criteria regarding the SUT, JFreeChart. We are to use the white-box testing techniques learned in class, regarding control flow and data flow, and use them to examine existing code and to develop test cases to further improve the coverage of our test code.
 
-# 2 Manual data-flow coverage calculations for calculateColumnTotal() and <insert second method name here>
+# 2 Manual data-flow coverage calculations for calculateColumnTotal() and contains()
 
 **calculateColumnTotal()**<br><br>
 <img width="329" alt="image" src="https://github.com/seng438-winter-2024/seng438-a3-stevanbeljic/assets/60798649/7a2334df-13a2-4dde-99fd-9d1aa0bf26e6">
@@ -83,6 +83,37 @@ The goal of this lab is to use JUnit, JMock, and EclEmma to calculate initial co
 
 **Coverage**<br>
 DU-Pair Coverage = 14/21 * 100 = 66.67%, largely because the second for loop is not executed at all apart from the initial loop condition.
+
+**contains()** <br><br>
+
+![alt text](media/seng438a3contains.png)
+
+
+| Variable | Defined at node | dcu | dpu   |
+| -------- | --------------- | --- | ----- |
+| value    | 1               | {4} | {2,3} |
+
+| Test Case                         | Pairs  Covered |
+| --------------------------------- | -------------- |
+| containsValueLessThanLowerTest    | du(1,2,value)  |
+| containsValueGreaterThanUpperTest | du(1,3,value)  |
+| containsValueBetweenBoundsTest    | du(1,4,value)  |
+
+| DU-path sets |                           |
+| ------------ | ------------------------- |
+| du(1,value)  | {[1,2],[1,2,3],[1,2,3,4]} |
+
+| DU-pair sets  |           |
+| ------------- | --------- |
+| du(1,2,value) | [1,2]     |
+| du(1,3,value) | [1,2,3]   |
+| du(1,4,value) | [1,2,3,4] |
+
+<br>**Coverage**<br>
+DU-pair coverage is 3/3 = 100%
+
+
+
 # 3 A detailed description of the testing strategy for the new unit test
 
 Our strategy for developing new tests is to first gleen what information relating to coverage we can from the initial test cases imported from assignment 2. From these test cases, we look to see where we can add onto existing unit tests, or create new unit tests, to improve our coverage criteria. We will be performing white-box testing on the SUT, since we have access to the source code and we will develop test cases based upon the expected results of the code, and since our primary metric for measuring test effectiveness will be coverage of various criteria.
@@ -199,4 +230,4 @@ Lessons learned from this lab include just learning how to better analyze data f
 
 **Angelo**: This lab was usefull in practically teaching us the difference between black-box and white-box testing which I struggled to understand prior to the lab. The use of coverage tools such as EclEmma was very helpful in identifying where the test cases are focused and it was particularly for identifying which branches were not covered; making us think of test cases we could build to reach them. I did find however that the lab document was a bit ambiguous in terms of the coverage metrics and whether we had to use the test classes' metrics or the actual classes' metrics because the image that was shown showed coverage for the test classes. The CFG part of the lab was a lot of work but it was useful in thinking of how data moves within a method. Overall, I enjoyed how straighforward and practical the lab was by helping us practically think of coverage and the different metrics and how to achieve them.
 
-**Aaron**:
+**Aaron**: The lab was a useful and practical experience in white box testing. The use of coverage tools was useful in seeing which parts of the code were accessed and provided aid in creating new test cases to increase coverage. Creating the DFG took some time to create but was useful in identifying all paths through a method. Learning how to use the coverage tool was tricky and the document caused confusion on whether we were testing coverage on the test class or the data class itself due to the image showing coverage on the test class. I also found creating test cases to reach 90% coverage tedious. Overall, the lab was a good hands-on experience in white-box testing
