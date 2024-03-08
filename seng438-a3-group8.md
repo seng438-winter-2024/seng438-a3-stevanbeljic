@@ -71,15 +71,18 @@ The goal of this lab is to use JUnit, JMock, and EclEmma to calculate initial co
 **Pair covered per test case**
 |Test Case| Pairs covered |
 |:-------:|:-------------:|
-|testCalculateColumnTotalDataNull| dcu:{} dpu:{}|
-|testCalculateColumnTotalDataNotNull| dcu:{} dpu:{}|
-|testCalculateColumnTotalSumNegative| dcu:{} dpu:{}|
-|testCalculateColumnTotalSumZero| dcu:{} dpu:{}|
-|testCalculateColumnTotalSumPositive| dcu:{} dpu:{}|
-|testCalculateColumnTotalEmpty| dcu:{} dpu:{}|
-|testCalculateColumnTotalNotEmpty| dcu:{} dpu:{}|
-|testCalculateColumnTotalInvalidIndex| dcu:{} dpu:{}|
-|testCalculateColumnTotalValidIndex| dcu:{} dpu:{}|
+|testCalculateColumnTotalDataNull| {du(1, end, data)}|
+|testCalculateColumnTotalDataNotNull| {du(1, 3, data), du(1, 5, data), du(1, 5, column), du(2, 7, total), du(3, 4, rowCount), du(3, 9, rowCount), du(4, 5, r), du(4, 8, r), du(5, 6, n), du(5, 7, n), du(9, end, r2)} |
+|testCalculateColumnTotalSumNegative| {du(1, 3, data), du(1, 5, data), du(1, 5, column), du(2, 7, total), du(3, 4, rowCount), du(3, 9, rowCount), du(4, 5, r), du(4, 8, r), du(5, 6, n), du(5, 7, n), du(9, end, r2)} |
+|testCalculateColumnTotalSumZero| {du(1, 3, data), du(1, 5, data), du(1, 5, column), du(2, 7, total), du(3, 4, rowCount), du(3, 9, rowCount), du(4, 5, r), du(4, 8, r), du(5, 6, n), du(5, 7, n), du(9, end, r2)}  |
+|testCalculateColumnTotalSumPositive| {du(1, 3, data), du(1, 5, data), du(1, 5, column), du(2, 7, total), du(3, 4, rowCount), du(3, 9, rowCount), du(4, 5, r), du(4, 8, r), du(5, 6, n), du(5, 7, n), du(9, end, r2)} |
+|testCalculateColumnTotalEmpty| {du(1, 3, data), du(1, 5, data), du(1, 5, column), du(3, 4, rowCount), du(3, 9, rowCount), du(4, 5, r), du(4, 8, r), du(5, 6, n), du(9, end, r2)}  |
+|testCalculateColumnTotalNotEmpty| {du(1, 3, data), du(1, 5, data), du(1, 5, column), du(2, 7, total), du(3, 4, rowCount), du(3, 9, rowCount), du(4, 5, r), du(4, 8, r), du(5, 6, n), du(5, 7, n), du(9, end, r2)} |
+|testCalculateColumnTotalInvalidIndex| {du(1, 3, data), du(1, 5, data), du(1, 5, column), du(3, 4, rowCount), du(3, 9, rowCount), du(4, 5, r), du(4, 8, r), du(5, 6, n), du(9, end, r2)}  |
+|testCalculateColumnTotalValidIndex| {du(1, 3, data), du(1, 5, data), du(1, 5, column), du(2, 7, total), du(3, 4, rowCount), du(3, 9, rowCount), du(4, 5, r), du(4, 8, r), du(5, 6, n), du(5, 7, n), du(9, end, r2)} |
+
+**Coverage**<br>
+DU-Pair Coverage = 14/21 * 100 = 66.67%, largely because the second for loop is not executed at all apart from the initial loop condition.
 # 3 A detailed description of the testing strategy for the new unit test
 
 Our strategy for developing new tests is to first gleen what information relating to coverage we can from the initial test cases imported from assignment 2. From these test cases, we look to see where we can add onto existing unit tests, or create new unit tests, to improve our coverage criteria. We will be performing white-box testing on the SUT, since we have access to the source code and we will develop test cases based upon the expected results of the code, and since our primary metric for measuring test effectiveness will be coverage of various criteria.
